@@ -6,10 +6,10 @@ target 'GithubSearch' do
   use_frameworks!
 
     pod 'Alamofire'
+    pod 'AlamofireObjectMapper'
+    pod 'ObjectMapper'
     pod 'Kingfisher'
-    
-    #pod 'SwiftyJSON'
-    #pod 'ObjectMapper'
+
   # Pods for GithubSearch
 
 end
