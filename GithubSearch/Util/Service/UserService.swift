@@ -15,7 +15,7 @@ struct UserService: APIManager, Requestable{
     static let shared = UserService()
     var searchURL = url("/users")
     let header: HTTPHeaders = [
-        "Authorization" : "token d029900da087b82acee1c345a7e128aa2d98842b"
+        "Authorization" : ""
     ]
     
     

@@ -14,7 +14,7 @@ struct SearchService: APIManager, Requestable{
     static let shared = SearchService()
     var searchURL = url("/search/users")
     let header: HTTPHeaders = [
-        "Authorization" : "token d029900da087b82acee1c345a7e128aa2d98842b"
+        "Authorization" : ""
     ]
     
     func getSearchAllResult(tag: String, completion: @escaping (Int) -> Void) {
