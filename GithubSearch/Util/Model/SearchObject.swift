@@ -10,6 +10,7 @@ import Foundation
 import ObjectMapper
 
 struct SearchObject : Mappable {
+    var total_count : Int?
     var incomplete_results : Bool?
     var items : [SearchItem]?
     
@@ -18,6 +19,7 @@ struct SearchObject : Mappable {
     }
     
     mutating func mapping(map: Map) {
+        total_count <- map["total_count"]
         incomplete_results <- map["incomplete_results"]
         items <- map["items"]
     }

@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var userList = [SearchItem]()
+    var totalCount = 0
     var perpageNum = 20
     
     override func viewDidLoad() {
@@ -33,6 +34,11 @@ class ViewController: UIViewController {
             self.userList = searchItems
             
             self.tableView.reloadData()
+        }
+        
+        SearchService.shared.getSearchAllResult(tag: searchBar.text!) { [weak self](totalCnt) in
+            guard let `self` = self else { return }
+            self.totalCount = totalCnt
         }
     }
     
@@ -56,11 +62,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.userID.text = user.login
         cell.userImg.imageFromUrl(gsno(user.avatar_url), defaultImgPath: "")
         
-//        UserService.shared.getUserRepoNumResult(userName: gsno(user.login)) { (repoNumber) in
-//
-//            print("reponumber : ", repoNumber)
-//            cell.userRepoNum.text = "Number of repos: \(String(repoNumber))"
-//        }
+        UserService.shared.getUserRepoNumResult(userName: gsno(user.login)) { (repoNumber) in
+            cell.userRepoNum.text = "Number of repos: \(String(repoNumber))"
+        }
         
         return cell
     }
@@ -68,9 +72,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 
         let lastElement = userList.count - 1
-        if indexPath.row == lastElement {
-            perpageNum += 20
-            getUserResult(pageNum: perpageNum)
+        if indexPath.row == lastElement{
+            if totalCount > perpageNum {
+                perpageNum += 20
+                getUserResult(pageNum: perpageNum)
+            }
         }
     }
 }
@@ -78,12 +84,20 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 extension ViewController: UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            searchUser()
+        }
+        
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.searchUser), object: nil)
         self.perform(#selector(self.searchUser), with: nil, afterDelay: 0.5)
-    }
 
+    }
+    
     @objc func searchUser(){
-        self.userList.removeAll()
+        perpageNum = 20
         getUserResult(pageNum: perpageNum)
+        if tableView.numberOfRows(inSection: 0) != 0 {
+            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
     }
 }

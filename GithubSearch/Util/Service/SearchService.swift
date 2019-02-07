@@ -14,10 +14,23 @@ struct SearchService: APIManager, Requestable{
     static let shared = SearchService()
     var searchURL = url("/search/users")
     let header: HTTPHeaders = [
-        "Authorization" : ""
+        "Authorization" : "token d029900da087b82acee1c345a7e128aa2d98842b"
     ]
     
-    
+    func getSearchAllResult(tag: String, completion: @escaping (Int) -> Void) {
+        let queryURL = searchURL + "?q=\(tag)"
+        guard let searchURL = queryURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
+        gettable(searchURL, body: nil, header: header) {
+            (res) in
+            switch res{
+            case .success(let value):
+                guard let totalCount = value.total_count else{return}
+                completion(totalCount)
+            case .error(let error):
+                print(error)
+            }
+        }
+    }
     
     func getSearchResult(tag: String, perPage: Int, completion: @escaping ([SearchItem]) -> Void) {
         let queryURL = searchURL + "?q=\(tag)&page=1&per_page=\(perPage)"

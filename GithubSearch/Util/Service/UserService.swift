@@ -15,27 +15,21 @@ struct UserService: APIManager, Requestable{
     static let shared = UserService()
     var searchURL = url("/users")
     let header: HTTPHeaders = [
-        "Authorization" : ""
+        "Authorization" : "token d029900da087b82acee1c345a7e128aa2d98842b"
     ]
     
     
     
     func getUserRepoNumResult(userName: String, completion: @escaping (Int) -> Void) {
         let queryURL = searchURL + "/\(userName)"
-        
-//        print("userName : \(userName)")
         guard let searchURL = queryURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
         gettable(searchURL, body: nil, header: header) {
             (res) in
-            print("res : ", res)
             switch res{
             case .success(let value):
-                print("value : \(value)")
                 guard let reposNumber = value.public_repos else{return}
-//                print("reposNumber : \(reposNumber)")
                 completion(reposNumber)
             case .error(let error):
-//                print("byebyebyebye")
                 print(error)
             }
         }
