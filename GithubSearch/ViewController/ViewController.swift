@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var userList = [SearchItem]()
-    var userRepoNum = 0
+    var perpageNum = 20
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,16 +23,14 @@ class ViewController: UIViewController {
         tableView.delegate = self
         searchBar.delegate = self
         
-        getUserResult()
+        getUserResult(pageNum: perpageNum)
     }
     
-    func getUserResult(){
-        SearchService.shared.getSearchResult(tag: searchBar.text!) { [weak self] (data) in
+    func getUserResult(pageNum : Int){
+        SearchService.shared.getSearchResult(tag: searchBar.text!, perPage: pageNum) { [weak self] (data) in
             guard let `self` = self else { return }
             let searchItems = data as [SearchItem]
             self.userList = searchItems
-            
-            print(self.userList)
             
             self.tableView.reloadData()
         }
@@ -40,14 +38,13 @@ class ViewController: UIViewController {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        getUserResult()
+        getUserResult(pageNum: perpageNum)
     }
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("userList.count : \(userList.count)")
         return userList.count
     }
     
@@ -59,14 +56,22 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.userID.text = user.login
         cell.userImg.imageFromUrl(gsno(user.avatar_url), defaultImgPath: "")
         
-        print("user.login", gsno(user.login))
-        UserService.shared.getUserRepoNumResult(userName: gsno(user.login)) { (repoNumber) in
-            
-            print("reponumber : ", repoNumber)
-            
-        }
+//        UserService.shared.getUserRepoNumResult(userName: gsno(user.login)) { (repoNumber) in
+//
+//            print("reponumber : ", repoNumber)
+//            cell.userRepoNum.text = "Number of repos: \(String(repoNumber))"
+//        }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+
+        let lastElement = userList.count - 1
+        if indexPath.row == lastElement {
+            perpageNum += 20
+            getUserResult(pageNum: perpageNum)
+        }
     }
 }
 
@@ -79,6 +84,6 @@ extension ViewController: UISearchBarDelegate{
 
     @objc func searchUser(){
         self.userList.removeAll()
-        getUserResult()
+        getUserResult(pageNum: perpageNum)
     }
 }

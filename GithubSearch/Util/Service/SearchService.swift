@@ -19,8 +19,8 @@ struct SearchService: APIManager, Requestable{
     
     
     
-    func getSearchResult(tag: String, completion: @escaping ([SearchItem]) -> Void) {
-        let queryURL = searchURL + "?q=\(tag)"
+    func getSearchResult(tag: String, perPage: Int, completion: @escaping ([SearchItem]) -> Void) {
+        let queryURL = searchURL + "?q=\(tag)&page=1&per_page=\(perPage)"
         guard let searchURL = queryURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
         gettable(searchURL, body: nil, header: header) {
             (res) in
