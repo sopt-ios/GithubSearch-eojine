@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var activity: UIActivityIndicatorView!
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -51,6 +52,9 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if userList.count == 0{
+            activity.stopAnimating()
+        }
         return userList.count
     }
     
@@ -73,7 +77,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
         let lastElement = userList.count - 1
         if indexPath.row == lastElement{
+            if totalCount-1 == lastElement {
+                activity.stopAnimating()
+            }
             if totalCount > perpageNum {
+                print("2")
+                activity.startAnimating()
                 perpageNum += 20
                 getUserResult(pageNum: perpageNum)
             }

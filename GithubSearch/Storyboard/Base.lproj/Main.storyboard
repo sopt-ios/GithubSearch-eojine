@@ -21,6 +21,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jx0-mv-OoT">
                                 <rect key="frame" x="0.0" y="126" width="375" height="541"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" id="cbY-vI-KFx">
+                                    <rect key="frame" x="0.0" y="115" width="375" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserTableViewCell" rowHeight="87" id="pmn-eg-7BX" customClass="UserTableViewCell" customModule="GithubSearch" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="87"/>
@@ -89,6 +93,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Github Users" id="RuS-I5-5ze"/>
                     <connections>
+                        <outlet property="activity" destination="cbY-vI-KFx" id="3eb-ub-xcg"/>
                         <outlet property="searchBar" destination="y8s-yF-lZj" id="ncb-hJ-nTB"/>
                         <outlet property="tableView" destination="Jx0-mv-OoT" id="dnB-Mr-8i8"/>
                     </connections>
