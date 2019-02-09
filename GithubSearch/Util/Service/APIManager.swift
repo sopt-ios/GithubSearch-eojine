@@ -15,3 +15,7 @@ extension APIManager {
         return "https://api.github.com" + path
     }
 }
+
+struct Token {
+    static let accessToken = ""
+}
