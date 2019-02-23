@@ -20,7 +20,7 @@ struct SearchService: APIManager, Requestable{
     func getSearchAllResult(tag: String, completion: @escaping (Int) -> Void) {
         let queryURL = searchURL + "?q=\(tag)"
         guard let searchURL = queryURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
-        gettable(searchURL, body: nil, header: header) {
+        getRequest(searchURL, body: nil, header: header) {
             (res) in
             switch res{
             case .success(let value):
@@ -35,7 +35,7 @@ struct SearchService: APIManager, Requestable{
     func getSearchResult(tag: String, perPage: Int, completion: @escaping ([SearchItem]) -> Void) {
         let queryURL = searchURL + "?q=\(tag)&page=1&per_page=\(perPage)"
         guard let searchURL = queryURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
-        gettable(searchURL, body: nil, header: header) {
+        getRequest(searchURL, body: nil, header: header) {
             (res) in
             switch res{
             case .success(let value):

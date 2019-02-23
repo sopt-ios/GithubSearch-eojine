@@ -23,7 +23,7 @@ struct UserService: APIManager, Requestable{
     func getUserRepoNumResult(userName: String, completion: @escaping (Int) -> Void) {
         let queryURL = searchURL + "/\(userName)"
         guard let searchURL = queryURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
-        gettable(searchURL, body: nil, header: header) {
+        getRequest(searchURL, body: nil, header: header) {
             (res) in
             switch res{
             case .success(let value):

@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     
     var userList = [SearchItem]()
     var totalCount = 0
-    var perpageNum = 20
+    var perpageNum = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,7 +103,7 @@ extension ViewController: UISearchBarDelegate{
     }
     
     @objc func searchUser(){
-        perpageNum = 20
+        perpageNum = 1
         getUserResult(pageNum: perpageNum)
         if tableView.numberOfRows(inSection: 0) != 0 {
             tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
