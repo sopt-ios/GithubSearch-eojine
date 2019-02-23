@@ -12,7 +12,6 @@
 		7C62E9A922045D5D002AC628 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C62E9A722045D5D002AC628 /* Main.storyboard */; };
 		7C62E9AB22045D61002AC628 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C62E9AA22045D61002AC628 /* Assets.xcassets */; };
 		7C62E9AE22045D61002AC628 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C62E9AC22045D61002AC628 /* LaunchScreen.storyboard */; };
-		7CCBFE04220974F700E784B7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCBFE03220974F700E784B7 /* Extensions.swift */; };
 		7CCBFE062209C79C00E784B7 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCBFE052209C79C00E784B7 /* UserTableViewCell.swift */; };
 		7CCBFE082209CFA200E784B7 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCBFE072209CFA200E784B7 /* APIManager.swift */; };
 		7CCBFE0A2209CFC400E784B7 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCBFE092209CFC400E784B7 /* NetworkResult.swift */; };
@@ -22,6 +21,7 @@
 		7CCBFE16220AFFE000E784B7 /* SearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCBFE15220AFFE000E784B7 /* SearchItem.swift */; };
 		7CCBFE18220AFFFE00E784B7 /* UserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCBFE17220AFFFE00E784B7 /* UserObject.swift */; };
 		7CCBFE1A220B013B00E784B7 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCBFE19220B013B00E784B7 /* UserService.swift */; };
+		7CFF1BD82222046400322162 /* UIImageView+imageFromUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFF1BD72222046400322162 /* UIImageView+imageFromUrl.swift */; };
 		E669407528B619C1B4E291A1 /* Pods_GithubSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C21E79001247A44CCC9E48 /* Pods_GithubSearch.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,7 +35,6 @@
 		7C62E9AA22045D61002AC628 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C62E9AD22045D61002AC628 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7C62E9AF22045D61002AC628 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7CCBFE03220974F700E784B7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		7CCBFE052209C79C00E784B7 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		7CCBFE072209CFA200E784B7 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		7CCBFE092209CFC400E784B7 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
@@ -45,6 +44,7 @@
 		7CCBFE15220AFFE000E784B7 /* SearchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItem.swift; sourceTree = "<group>"; };
 		7CCBFE17220AFFFE00E784B7 /* UserObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserObject.swift; sourceTree = "<group>"; };
 		7CCBFE19220B013B00E784B7 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		7CFF1BD72222046400322162 /* UIImageView+imageFromUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+imageFromUrl.swift"; sourceTree = "<group>"; };
 		F0C21E79001247A44CCC9E48 /* Pods_GithubSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GithubSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -120,7 +120,7 @@
 		7CCBFDFD2209735600E784B7 /* Function */ = {
 			isa = PBXGroup;
 			children = (
-				7CCBFE03220974F700E784B7 /* Extensions.swift */,
+				7CFF1BD72222046400322162 /* UIImageView+imageFromUrl.swift */,
 			);
 			path = Function;
 			sourceTree = "<group>";
@@ -315,10 +315,10 @@
 				7CCBFE082209CFA200E784B7 /* APIManager.swift in Sources */,
 				7CCBFE16220AFFE000E784B7 /* SearchItem.swift in Sources */,
 				7CCBFE0A2209CFC400E784B7 /* NetworkResult.swift in Sources */,
-				7CCBFE04220974F700E784B7 /* Extensions.swift in Sources */,
 				7CCBFE1A220B013B00E784B7 /* UserService.swift in Sources */,
 				7CCBFE12220AFF5E00E784B7 /* SearchService.swift in Sources */,
 				7CCBFE14220AFFB000E784B7 /* SearchObject.swift in Sources */,
+				7CFF1BD82222046400322162 /* UIImageView+imageFromUrl.swift in Sources */,
 				7C62E9A422045D5D002AC628 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

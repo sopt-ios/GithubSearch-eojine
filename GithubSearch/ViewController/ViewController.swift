@@ -64,9 +64,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let user = userList[indexPath.row]
         
         cell.userID.text = user.login
-        cell.userImg.imageFromUrl(gsno(user.avatar_url), defaultImgPath: "")
+        cell.userImg.imageFromUrl(user.avatar_url, defaultImgPath: "")
         
-        UserService.shared.getUserRepoNumResult(userName: gsno(user.login)) { (repoNumber) in
+        UserService.shared.getUserRepoNumResult(userName: user.login ?? "") { (repoNumber) in
             cell.userRepoNum.text = "Number of repos: \(String(repoNumber))"
         }
         
@@ -83,7 +83,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             if totalCount > perpageNum {
                 print("2")
                 activity.startAnimating()
-                perpageNum += 20
+                perpageNum += 1
                 getUserResult(pageNum: perpageNum)
             }
         }

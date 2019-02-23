@@ -17,5 +17,5 @@ extension APIManager {
 }
 
 struct Token {
-    static let accessToken = ""
+    static let accessToken = "token 389a51992c66f60fd3d02e25161728516000756a"
 }
